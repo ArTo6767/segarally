@@ -31,7 +31,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
             background-color: #000;
         }
-        #game-container iframe {
+        #arcade-frame {
             width: 100%;
             height: 100%;
             border: none;
@@ -43,8 +43,26 @@
     <h1>ARPLEX HORIZON ARCADE</h1>
 
     <div id="game-container">
-        <iframe src="https://emulatorjs.org/emu/?system=arcade&backend=mame&rom=https%3A%2F%2Farchive.org%2Fdownload%2Fsrallyc%2Fsrallyc.zip" allowfullscreen="true" scrolling="no"></iframe>
+        <iframe id="arcade-frame" allowfullscreen="true" scrolling="no"></iframe>
     </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('arcade-frame');
+            
+            // EmulatorJS'in harici oynatıcısı için tam, kırpılmayan temiz URL şablonu
+            const baseUrl = "https://emulatorjs.org/emu/";
+            const system = "arcade";
+            const backend = "mame";
+            const romUrl = "https://archive.org/download/srallyc/srallyc.zip";
+            
+            // Tarayıcının ve sunucunun linki bükmesini engellemek için bileşenleri güvenli encode ediyoruz
+            const finalSrc = `${baseUrl}?system=${system}&backend=${backend}&rom=${encodeURIComponent(romUrl)}`;
+            
+            // Linki doğrudan iframe'e postalıyoruz
+            iframe.src = finalSrc;
+        });
+    </script>
 
 </body>
 </html>
