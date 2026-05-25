@@ -31,34 +31,20 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
             background-color: #000;
         }
-        #game {
+        #game-container iframe {
             width: 100%;
             height: 100%;
+            border: none;
         }
     </style>
-    <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 </head>
 <body>
 
     <h1>ARPLEX HORIZON ARCADE</h1>
 
     <div id="game-container">
-        <div id="game"></div>
+        <iframe src="https://emulatorjs.org/emu/?system=arcade&backend=mame&rom=https%3A%2F%2Farchive.org%2Fdownload%2Fsrallyc%2Fsrallyc.zip" allowfullscreen="true" scrolling="no"></iframe>
     </div>
-
-    <script>
-        window.addEventListener('load', function() {
-            // Loader'ın kendi resmi sunucusunu hedef göstererek link bozma hatasını sıfırlıyoruz
-            EmuJS.init({
-                id: 'game',
-                system: 'arcade',
-                backend: 'mame',
-                rom: 'https://archive.org/download/srallyc/srallyc.zip',
-                dataUrl: 'https://cdn.emulatorjs.org/stable/data/',
-                autoStart: true
-            });
-        });
-    </script>
 
 </body>
 </html>
