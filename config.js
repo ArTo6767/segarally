@@ -14,7 +14,7 @@ window.EmuJS = {
         var iframe = document.createElement('iframe');
         var serverUrl = 'https://emulatorjs.org/emu/';
         
-        // Senin GitHub hesabına ve depona ait olan kesin, değişmez ROM linki kanka:
+        // options.rom artık otomatik olarak 'srallyc.zip' değerini alacak
         var fullRomUrl = 'https://arto6767.github.io/segarally/' + options.rom;
         
         iframe.src = serverUrl + '?system=' + options.system + 
@@ -30,6 +30,6 @@ window.EmuJS = {
         container.innerHTML = '';
         container.appendChild(iframe);
         
-        console.log('EmulatorJS: Sistem tetiklendi. Garanti ROM Linki: ' + fullRomUrl);
+        console.log('EmulatorJS: Sistem tetiklendi. Güncel ROM Linki: ' + fullRomUrl);
     }
 };
