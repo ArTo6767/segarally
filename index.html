@@ -36,7 +36,7 @@
             height: 100%;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/loader.js"></script>
+    <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 </head>
 <body>
 
@@ -47,15 +47,14 @@
     </div>
 
     <script>
-        // Tarayıcı tamamen yüklendiğinde emülatör motorunu kendi sayfamızda ateşliyoruz
         window.addEventListener('load', function() {
+            // Loader'ın kendi resmi sunucusunu hedef göstererek link bozma hatasını sıfırlıyoruz
             EmuJS.init({
                 id: 'game',
                 system: 'arcade',
                 backend: 'mame',
-                // Linkin kırılmasını engellemek için doğrudan ham URL veriyoruz
                 rom: 'https://archive.org/download/srallyc/srallyc.zip',
-                dataUrl: 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/',
+                dataUrl: 'https://cdn.emulatorjs.org/stable/data/',
                 autoStart: true
             });
         });
