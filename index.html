@@ -15,6 +15,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         h1 {
             margin-bottom: 10px;
@@ -27,21 +28,35 @@
             max-width: 100%;
             border: 4px solid #333;
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
         }
-        #game-container iframe {
+        #game {
             width: 100%;
             height: 100%;
-            border: none;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
 </head>
 <body>
 
     <h1>ARPLEX HORIZON ARCADE</h1>
 
     <div id="game-container">
-        <iframe src="https://emulatorjs.org/emu/?system=arcade&backend=mame&rom=https%3A%2F%2Farchive.org%2Fdownload%2Fsrallyc%2Fsrallyc.zip" allowfullscreen="true" scrolling="no"></iframe>
+        <div id="game"></div>
     </div>
+
+    <script>
+        // Kendi lokal sunucumuz gibi CDN üzerinden motoru tetikliyoruz
+        EmuJS.init({
+            id: 'game',
+            system: 'arcade',
+            // Archive.org dosyanı doğrudan saf veri olarak besliyoruz kanka
+            rom: 'https://archive.org/download/srallyc/srallyc.zip',
+            dataUrl: 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/',
+            backend: 'mame',
+            autoStart: true
+        });
+    </script>
 
 </body>
 </html>
