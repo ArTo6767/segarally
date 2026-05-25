@@ -22,45 +22,46 @@
             font-size: 24px;
             letter-spacing: 2px;
             text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255,0,0,0.5);
         }
         #game-container {
             width: 800px;
             height: 600px;
             max-width: 100%;
             border: 4px solid #333;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            box-shadow: 0 0 30px rgba(0,0,0,0.9);
             background-color: #000;
+            position: relative;
         }
-        #arcade-frame {
+        #game {
             width: 100%;
             height: 100%;
-            border: none;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/loader.js"></script>
 </head>
 <body>
 
     <h1>ARPLEX HORIZON ARCADE</h1>
 
     <div id="game-container">
-        <iframe id="arcade-frame" allowfullscreen="true" scrolling="no"></iframe>
+        <div id="game"></div>
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const iframe = document.getElementById('arcade-frame');
-            
-            // EmulatorJS'in harici oynatıcısı için tam, kırpılmayan temiz URL şablonu
-            const baseUrl = "https://emulatorjs.org/emu/";
-            const system = "arcade";
-            const backend = "mame";
-            const romUrl = "https://archive.org/download/srallyc/srallyc.zip";
-            
-            // Tarayıcının ve sunucunun linki bükmesini engellemek için bileşenleri güvenli encode ediyoruz
-            const finalSrc = `${baseUrl}?system=${system}&backend=${backend}&rom=${encodeURIComponent(romUrl)}`;
-            
-            // Linki doğrudan iframe'e postalıyoruz
-            iframe.src = finalSrc;
+        window.addEventListener('load', function() {
+            // EmulatorJS'in sinsi yol kırpma fonksiyonunu alt etmek için base path'i zorluyoruz
+            EmuJS.init({
+                id: 'game',
+                system: 'arcade',
+                backend: 'mame',
+                // ROM dosyasını doğrudan Archive.org üzerinden çekmesini dikte ediyoruz
+                rom: 'https://archive.org/download/srallyc/srallyc.zip',
+                // Dosyaların kendi sitene sapmasını önleyen mutlak CDN dizini parametresi
+                dataUrl: 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/',
+                autoStart: true,
+                startOnLoad: true
+            });
         });
     </script>
 
