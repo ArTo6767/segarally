@@ -39,13 +39,14 @@
     </div>
 
     <script src="./config.js"></script>
+    <script src="./config.js"></script>
     
     <script>
         EmuJS.init({
             id: 'game',
             system: 'arcade', 
-            // Dosya index.html ile aynı yerde yan yana durduğu için direkt adını yazdık kanka
-            rom: './segarally.zip', 
+            // Direkt dosya adını veriyoruz, config.js bunu tam linke çevirecek
+            rom: 'segarally.zip', 
             backend: 'mame', 
             autoStart: true, 
             Format: 'capsule'
