@@ -14,8 +14,8 @@ window.EmuJS = {
         var iframe = document.createElement('iframe');
         var serverUrl = 'https://emulatorjs.org/emu/';
         
-        // ARADAKİ EĞİK ÇİZGİYİ EN GARANTİ HALE GETİRDİK KANKA:
-        var fullRomUrl = 'https://arto6767.github.io/segarally/' + options.rom;
+        // Senin Archive.org'a yüklediğin o çalışan kesin direkt link kanka:
+        var fullRomUrl = 'https://archive.org/download/srallyc/' + options.rom;
         
         iframe.src = serverUrl + '?system=' + options.system + 
                      '&rom=' + encodeURIComponent(fullRomUrl) + 
@@ -30,6 +30,6 @@ window.EmuJS = {
         container.innerHTML = '';
         container.appendChild(iframe);
         
-        console.log('EmulatorJS: Sistem tetiklendi. Çizgisi Tam ROM Linki: ' + fullRomUrl);
+        console.log('EmulatorJS: Sistem tetiklendi. Doğru Temiz Link: ' + fullRomUrl);
     }
 };
