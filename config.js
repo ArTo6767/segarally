@@ -14,12 +14,8 @@ window.EmuJS = {
         var iframe = document.createElement('iframe');
         var serverUrl = 'https://emulatorjs.org/emu/';
         
-        // GitHub Pages'daki tam linki otomatik oluşturuyoruz (Örn: https://kullaniciadi.github.io/arcade/segarally.zip)
-        var cleanOrigin = window.location.origin.replace(/\/+$/, "");
-        var cleanPath = window.location.pathname.replace(/\/+$/, "");
-        var cleanRomPath = options.rom.replace(/^\.\//, "/").replace(/^\/+/, "/");
-        
-        var fullRomUrl = cleanOrigin + cleanPath + cleanRomPath;
+        // Senin GitHub hesabına ve depona ait olan kesin, değişmez ROM linki kanka:
+        var fullRomUrl = 'https://arto6767.github.io/segarally/' + options.rom;
         
         iframe.src = serverUrl + '?system=' + options.system + 
                      '&rom=' + encodeURIComponent(fullRomUrl) + 
@@ -34,6 +30,6 @@ window.EmuJS = {
         container.innerHTML = '';
         container.appendChild(iframe);
         
-        console.log('EmulatorJS: Sistem tetiklendi. GitHub ROM Linki: ' + fullRomUrl);
+        console.log('EmulatorJS: Sistem tetiklendi. Garanti ROM Linki: ' + fullRomUrl);
     }
 };
