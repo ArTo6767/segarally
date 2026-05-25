@@ -22,7 +22,7 @@
             font-size: 24px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(255,0,0,0.5);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
         #game-container {
             width: 800px;
@@ -31,37 +31,40 @@
             border: 4px solid #333;
             box-shadow: 0 0 30px rgba(0,0,0,0.9);
             background-color: #000;
-            position: relative;
         }
-        #game {
+        #emulator-iframe {
             width: 100%;
             height: 100%;
+            border: none;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/loader.js"></script>
 </head>
 <body>
 
     <h1>ARPLEX HORIZON ARCADE</h1>
 
     <div id="game-container">
-        <div id="game"></div>
+        <iframe id="emulator-iframe" allowfullscreen="true" scrolling="no"></iframe>
     </div>
 
     <script>
-        window.addEventListener('load', function() {
-            // EmulatorJS'in sinsi yol kırpma fonksiyonunu alt etmek için base path'i zorluyoruz
-            EmuJS.init({
-                id: 'game',
-                system: 'arcade',
-                backend: 'mame',
-                // ROM dosyasını doğrudan Archive.org üzerinden çekmesini dikte ediyoruz
-                rom: 'https://archive.org/download/srallyc/srallyc.zip',
-                // Dosyaların kendi sitene sapmasını önleyen mutlak CDN dizini parametresi
-                dataUrl: 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/',
-                autoStart: true,
-                startOnLoad: true
-            });
+        window.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('emulator-iframe');
+            
+            // EmulatorJS'in resmî, ayakta duran ve stabil çalışan genel oynatıcı sunucusu
+            const basePlayer = "https://emulatorjs.org/emu/";
+            const system = "arcade";
+            const backend = "mame";
+            const romUrl = "https://archive.org/download/srallyc/srallyc.zip";
+            
+            // Tarayıcının URL yapısını bozmasını engellemek için parametreleri güvenli bir şekilde birleştiriyoruz
+            const targetUrl = basePlayer + 
+                              "?system=" + system + 
+                              "&backend=" + backend + 
+                              "&rom=" + encodeURIComponent(romUrl);
+            
+            // iframe'i doğrudan bu temiz, harici bağımsız adrese yönlendiriyoruz
+            iframe.src = targetUrl;
         });
     </script>
 
